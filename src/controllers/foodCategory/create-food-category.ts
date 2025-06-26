@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import FoodCategory from "../models/foodCategory";
+import FoodCategory from "../../models/foodCategory";
 
 export const createFoodCategory = async (req: Request, res: Response) => {
   const { categoryName } = req.body;
@@ -10,6 +10,6 @@ export const createFoodCategory = async (req: Request, res: Response) => {
 
     res.status(200).send({ success: true, foodCategory });
   } catch (error) {
-    res.status(400).send("api error");
+    res.status(400).send({ message: "api error", error });
   }
 };
