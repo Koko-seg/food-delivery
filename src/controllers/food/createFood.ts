@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
-import FoodCategory from "../../models/foodCategory";
-import Food from "../../models/food";
+
+import { Food } from "../../models/food";
+
 
 export const createFood = async (req: Request, res: Response) => {
   const { foodName, category, price, image, ingredients } = req.body;

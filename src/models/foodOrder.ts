@@ -9,12 +9,12 @@ enum Numib {
 
 const foodOrderSchema = new Schema(
   {
-    user: { type: Schema.Types.ObjectId, ref: "User", required: true },
-    totalPrice: { type: Number, required: true },
+    user: { type: Schema.Types.ObjectId, ref: "User", require: true },
+    totalPrice: { type: Number, require: true },
     foodOrderItems: [{ type: foodOrderItemSchema, required: true }],
     status: {
       type: String,
-      required: true,
+      require: true,
       default: Numib.PENDING,
       enum: Object.values(Numib),
     },

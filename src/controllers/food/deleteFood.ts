@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
-import Food from "../../models/food";
+import { Food } from "../../models/food";
+
 
 export const DeleteFood = async (req: Request, res: Response) => {
   const { foodId } = req.params;

@@ -12,11 +12,9 @@ export const createOrder = async (req: Request, res: Response) => {
   try {
     console.log(foodOrderItems);
 
-    const order = await new FoodOrder({foodOrderItems}).save();
-
-    console.log("ORDER ITEMS", order);
-    
-    res.status(200).send({ success: true, order});
+    const order = await new FoodOrder({ foodOrderItems}).save();
+    res.status(200).send({ success: true, order });
+    // res.status(200).send({ success: true });
   } catch (error) {
     res.status(400).send({ message: "api error", error });
   }

@@ -23,5 +23,5 @@ const FoodSchema = new Schema<FoodSchemaType>(
   { timestamps: true }
 );
 
-const Food = model<FoodSchemaType>("Food", FoodSchema);
-export default Food;
+export const Food = model<FoodSchemaType>("Food", FoodSchema);
+
