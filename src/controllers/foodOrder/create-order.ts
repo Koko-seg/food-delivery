@@ -1,14 +1,23 @@
 import { Request, Response } from "express";
-import FoodOrder from "../../models/foodOrder";
+import { FoodOrder } from "../../models/foodOrder";
+import { FoodOrderItemType } from "../../models/foodOrderItem";
 
-export const createOrder =async (req:Request, res:Response)=> {
+type CreateOrderParams = {
+  foodOrderItems: FoodOrderItemType[];
+};
 
-  const {foodOrderItems, status}=req.body 
+export const createOrder = async (req: Request, res: Response) => {
+  const { foodOrderItems } = req.body as CreateOrderParams;
+
+  try {
+    console.log(foodOrderItems);
+
+    const order = await new FoodOrder({foodOrderItems}).save();
+
+    console.log("ORDER ITEMS", order);
     
-    try {
-        const order = await new FoodOrder ({foodOrderItems,status}). save()
-        res.status(200).send({ success: true, order });
-    } catch (error) {
-      res.status(400).send({ message: "api error", error });
-    }
-}
+    res.status(200).send({ success: true, order});
+  } catch (error) {
+    res.status(400).send({ message: "api error", error });
+  }
+};
