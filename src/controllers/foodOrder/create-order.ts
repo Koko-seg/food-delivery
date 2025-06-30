@@ -4,15 +4,21 @@ import { FoodOrderItemType } from "../../models/foodOrderItem";
 
 type CreateOrderParams = {
   foodOrderItems: FoodOrderItemType[];
+  user: string;
+  totalPrice: number;
 };
 
 export const createOrder = async (req: Request, res: Response) => {
-  const { foodOrderItems } = req.body as CreateOrderParams;
+  const { user, totalPrice, foodOrderItems } = req.body as CreateOrderParams;
 
   try {
     console.log(foodOrderItems);
 
-    const order = await new FoodOrder({ foodOrderItems}).save();
+    const order = await new FoodOrder({
+      user,
+      totalPrice,
+      foodOrderItems,
+    }).save();
     res.status(200).send({ success: true, order });
     // res.status(200).send({ success: true });
   } catch (error) {

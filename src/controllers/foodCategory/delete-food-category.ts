@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import FoodCategory from "../../models/foodCategory";
+import { FoodCategory } from "../../models/foodCategory";
 
 export const deleteFoodCategory = async (req: Request, res: Response) => {
   const { categoryId } = req.params;

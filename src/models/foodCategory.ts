@@ -6,5 +6,4 @@ const foodCategorySchema = new Schema({
   updatedAt: { type: Date, default: Date.now() },
 });
 
-const FoodCategory = model("FoodCategory", foodCategorySchema);
-export default FoodCategory;
+export const FoodCategory = model("FoodCategory", foodCategorySchema);

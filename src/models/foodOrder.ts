@@ -1,7 +1,7 @@
 import { model, Schema } from "mongoose";
 import { foodOrderItemSchema } from "./foodOrderItem";
 
-enum Numib {
+enum OrderEnum {
   PENDING = "Pending",
   CANCELED = "Canceled",
   DELIVERED = "Delivered",
@@ -15,8 +15,8 @@ const foodOrderSchema = new Schema(
     status: {
       type: String,
       require: true,
-      default: Numib.PENDING,
-      enum: Object.values(Numib),
+      default: OrderEnum.PENDING,
+      enum: Object.values(OrderEnum),
     },
   },
   { timestamps: true }
