@@ -1,6 +1,5 @@
 import express from "express";
 
-
 import { createOrder } from "../controllers/foodOrder/create-order";
 
 import { getOrderById } from "../controllers/foodOrder/getById-order";
@@ -14,6 +13,6 @@ orderRouter.post("/", createOrder);
 orderRouter.get("/:orderId", getOrderById);
 orderRouter.get("/", getOrders);
 
-orderRouter.put("/updateOrder/:orderId", upDateOrder);
+orderRouter.put("/:orderId", upDateOrder);
 
 export default orderRouter;

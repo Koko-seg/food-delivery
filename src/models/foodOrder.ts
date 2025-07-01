@@ -9,12 +9,12 @@ enum OrderEnum {
 
 const foodOrderSchema = new Schema(
   {
-    user: { type: Schema.Types.ObjectId, ref: "User", require: true },
+    user: { type: Schema.Types.ObjectId, ref: "User", required: true },
     totalPrice: { type: Number, require: true },
     foodOrderItems: [{ type: foodOrderItemSchema, required: true }],
     status: {
       type: String,
-      require: true,
+      required: true,
       default: OrderEnum.PENDING,
       enum: Object.values(OrderEnum),
     },

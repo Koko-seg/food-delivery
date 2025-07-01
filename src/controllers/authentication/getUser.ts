@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 
-import { FoodOrder } from "../../models/foodOrder";
 import { User } from "../../models/user";
 
 export const getUsers = async (req: Request, res: Response) => {
