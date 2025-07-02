@@ -1,12 +1,12 @@
 import { model, Schema } from "mongoose";
 
 export type FoodSchemaType = {
-  foodName:string;
-  category: Schema.Types.ObjectId,
-  price: string,
-  image:string;
-  ingredients:string
-}
+  foodName: string;
+  category: Schema.Types.ObjectId;
+  price: string;
+  image: string;
+  ingredients: string;
+};
 
 const FoodSchema = new Schema<FoodSchemaType>(
   {
@@ -24,4 +24,3 @@ const FoodSchema = new Schema<FoodSchemaType>(
 );
 
 export const Food = model<FoodSchemaType>("Food", FoodSchema);
-
