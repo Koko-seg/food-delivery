@@ -22,4 +22,6 @@ const foodOrderSchema = new Schema(
   { timestamps: true }
 );
 
+foodOrderSchema.pre("save", function (next) {});
+
 export const FoodOrder = model("FoodOrder", foodOrderSchema);
