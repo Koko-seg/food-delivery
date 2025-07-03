@@ -1,4 +1,6 @@
 import express, { Request, Response } from "express";
+import cors from "cors";
+
 import { connectDb } from "./database/database";
 import cors from "cors";
 
