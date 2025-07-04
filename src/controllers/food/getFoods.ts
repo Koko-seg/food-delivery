@@ -1,43 +1,33 @@
 import { Request, Response } from "express";
 import { Food } from "../../models/food";
+import { FoodCategory } from "../../models/foodCategory";
 
-export const getFoodWithCategories = async (req: Request, res: Response) => {
+export const foodWithCategories = async (req: Request, res: Response) => {
   try {
-    const foods = await Food.aggregate([
+    const result = await FoodCategory.aggregate([
       {
         $lookup: {
-          from: "foodcategories",
-          localField: "category",
-          foreignField: "_id",
+          from: "foods",
+          localField: "_id",
+          foreignField: "category",
           as: "categoryDetails",
         },
       },
       {
-        $unwind: "$categoryDetails",
-      },
-      {
-        $group: {
-          _id: "$categoryDetails._id",
-          categoryName: {
-            $first: "$categoryDetails.categoryName",
-          },
-          foods: {
-            $push: {
-              _id: "$_id",
-              foodName: "$foodName",
-              price: "$price",
-              image: "$image",
-              ingredients: "$ingredients",
-            },
-          },
-          count: {
-            $sum: 1,
-          },
+        $project: {
+          categoryName: "$categoryName",
+          count: { $size: "$categoryDetails" },
+          foods: "$categoryDetails",
         },
       },
+      {
+        $sort: { categoryName: 1 },
+      },
     ]);
-    res.status(200).send({ success: true, foods });
+
+    res.status(200).json({ success: true, foodWithCategories: result });
   } catch (error) {
-    res.status(400).send({ message: "api error", error });
+    console.error("Failed to get foods with category:", error);
+    res.status(500).json({ message: "Failed to get foods", error });
   }
 };
