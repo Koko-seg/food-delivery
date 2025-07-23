@@ -10,7 +10,7 @@ const orderRouter = express.Router();
 
 orderRouter.post("/", createOrder);
 
-orderRouter.get("/:orderId", getOrderById);
+orderRouter.get("/:userId", getOrderById);
 orderRouter.get("/", getOrders);
 
 orderRouter.put("/:orderId", upDateOrder);

@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 
 import { User } from "../../models/user";
+import bcrypt from "bcrypt";
 
 // type CreateOrderParams = {
 //   foodOrderItems: FoodOrderItemType[];
@@ -11,14 +12,15 @@ import { User } from "../../models/user";
 export const createUser = async (req: Request, res: Response) => {
   const { email, password, phoneNumber, address } = req.body;
 
-  try {
-    console.log(email, password, phoneNumber, address);
+  const hashedPassword = await bcrypt.hash(password, 10);
 
+  try {
     const user = await new User({
       email,
-      password,
+      password: hashedPassword,
       phoneNumber,
       address,
+      isVerified: false,
     }).save();
     res.status(200).send({ success: true, user });
     // res.status(200).send({ success: true });

@@ -3,10 +3,13 @@ import { createUser } from "../controllers/authentication/createUser";
 import { getUsers } from "../controllers/authentication/getUser";
 import { upDateUser } from "../controllers/authentication/putUser";
 import { getUserById } from "../controllers/authentication/getUserById";
+import { login } from "../controllers/authentication/login";
 
 const userRouter = express.Router();
 
 userRouter.post("/", createUser);
+
+userRouter.post("/login", login);
 
 userRouter.get("/", getUsers);
 
