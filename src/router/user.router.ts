@@ -1,20 +1,25 @@
 import express from "express";
 import { createUser } from "../controllers/authentication/createUser";
 import { getUsers } from "../controllers/authentication/getUser";
-import { upDateUser } from "../controllers/authentication/putUser";
+
 import { getUserById } from "../controllers/authentication/getUserById";
-import { login } from "../controllers/authentication/login";
+import { signIn } from "../controllers/authentication/login";
+import { getCurrentUser } from "../controllers/authentication/get-current-user";
 
 const userRouter = express.Router();
 
-userRouter.post("/", createUser);
+userRouter.post("/sign-up", createUser);
 
-userRouter.post("/login", login);
+userRouter.post("/login", signIn);
 
 userRouter.get("/", getUsers);
 
-userRouter.get("/:userId", getUserById);
+userRouter.get("/getUserById/:userId", getUserById);
 
-userRouter.put("/updateUser/:userId", upDateUser);
+userRouter.get("/get-current-user", getCurrentUser);
 
 export default userRouter;
+
+//cloudinary
+//nodemailer
+//

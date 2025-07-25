@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 
 import { User } from "../../models/user";
 
-export const upDateUser = async (req: Request, res: Response) => {
+export const resetPassword = async (req: Request, res: Response) => {
   const { userId } = req.params;
 
   try {
